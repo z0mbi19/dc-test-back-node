@@ -14,6 +14,6 @@ router.get("/person", allPerson);
 router.get("/personid", indexPerson);
 router.post("/person", storePerson);
 router.put("/personid", updatePerson);
-router.delete("/personid", deletePerson);
+router.delete("/personid/:id", deletePerson);
 
 export default router;

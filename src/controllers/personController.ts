@@ -5,11 +5,11 @@ const prisma = new PrismaClient();
 
 export async function storePerson(req: Request, res: Response) {
   const body = { ...req.body };
-  const result = await prisma.person.create({
+  await prisma.person.create({
     data: { ...body },
   });
 
-  res.json(result);
+  return res.sendStatus(200);
 }
 
 export async function updatePerson(req: Request, res: Response) {
@@ -23,18 +23,37 @@ export async function updatePerson(req: Request, res: Response) {
 }
 
 export async function deletePerson(req: Request, res: Response) {
-  const body = { ...req.body };
-  const result = await prisma.person.delete({
-    where: { id: body.id },
+  await prisma.person.delete({
+    where: { id: parseInt(req.params.id) },
   });
 
-  res.json(result);
+  res.sendStatus(200);
 }
 
 export async function allPerson(req: Request, res: Response) {
   const result = await prisma.person.findMany();
 
-  res.json(result);
+  function getAge(dateString: any) {
+    let today = new Date();
+    let birthDate = new Date(dateString);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  const age = result.map((x) => {
+    return {
+      id: x.id,
+      nome: x.nome,
+      dtNascimento: x.dtNascimento && x.dtNascimento.toString(),
+      idade: getAge(x.dtNascimento),
+      createAt: x.createAt,
+    };
+  });
+  res.json(age);
 }
 
 export async function indexPerson(req: Request, res: Response) {
