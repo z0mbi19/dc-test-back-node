@@ -88,7 +88,24 @@ npx prisma migrate dev
 # Run the project
 $ yarn start
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:4000>
+
+# Get all person in data base <http://localhost:4000/person>
+
+# Create one person in data base <http://localhost:4000/person>
+{
+  "nome": "the name you want"
+  "dtnascimento": "2022-08-19T03:00:00.000Z" # the date of birthday you want
+}
+
+# Update one person in data base <http://localhost:4000/person>
+{
+  "id": 1 #id of a person you want to update
+  "nome": "the name you want"
+  "dtnascimento": "2022-08-19T03:00:00.000Z" # the date of birthday you want
+}
+
+# delete one person in data base <http://localhost:4000//personid/:id>
 ```
 
 ## :memo: License
