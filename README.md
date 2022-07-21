@@ -46,13 +46,7 @@
 
 ## :dart: About
 
-Describe your project
-
-## :sparkles: Features
-
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+This project is a CRUD simple in node js used prisma and postgres
 
 ## :rocket: Technologies
 
